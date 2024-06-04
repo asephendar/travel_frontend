@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Mobil</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="../assets/images/logoTravel.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Travel Mobil</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+                <li class="nav-item">
+                  <img src="../assets/images/logoTravel.png" class="rounded float-start" style="width: 60px;" alt="...">
+                </li>
+                <li class="nav-item">
+                  <a class="navbar-brand text-white ms-2" href="#">Travel Mobil</a>
+                  <!-- <span class="navbar-text text-white text-lg-center ms-2" id="fullName">
+                    Full Name
+                  </span> -->
+                </li>
+              </ul>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Gallery</a>
+                        <a class="nav-link" href="#ourFleet">Our Fleet</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#map">Map</a>
@@ -32,76 +48,247 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Log in</a>
+                    <li class="nav-item" id="loginNavItem">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#authModal"
+                            id="loginLink">Log in</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="authModalLabel">Log in & Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="authTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab"
+                                aria-controls="login" aria-selected="true">Log in</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="register-tab" data-bs-toggle="tab" href="#register" role="tab"
+                                aria-controls="register" aria-selected="false">Register</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                            <form id="loginForm">
+                                <div class="alert alert-danger d-none" id="loginErrorAlert" role="alert">
+                                    Invalid username or password
+                                </div>
+                                <div class="alert alert-success d-none" id="loginSuccessAlert" role="alert">
+                                    Logged in successfully
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginUsername" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="loginUsername"
+                                        placeholder="Enter username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="loginPassword"
+                                        placeholder="Enter password" required>
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary"><i
+                                            class="bi bi-box-arrow-in-left"></i>
+                                        Log in
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <form id="registerForm">
+                                <div class="alert alert-success d-none" id="registerSuccessAlert" role="alert">
+                                    Registered successfully
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerUsername" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="registerUsername"
+                                        placeholder="Enter username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerFullName" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="registerFullName"
+                                        placeholder="Enter car name" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="registerEmail"
+                                        placeholder="Enter car name" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">Password</label>
+                                    <input type="tel" class="form-control" id="registerPassword"
+                                        placeholder="Enter password" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPhoneNumber" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="registerPhoneNumber"
+                                        placeholder="Enter phone number" required pattern="[0-9]+" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerAddress" class="form-label">Address</label>
+                                    <input type="address" class="form-control" id="registerAddress"
+                                        placeholder="Enter car name" required />
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-success"><i class="bi bi-person-plus-fill"></i>
+                                        Register
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Cover -->
-    <section id="cover" class="bg-primary text-white py-5">
+    <section id="cover" class="bg-primary text-white py-5 mt-4">
         <div class="container text-center">
             <h1 class="display-4 mb-4">Your Ultimate Car Rental Destination</h1>
             <p class="lead">Explore the world with comfort and style</p>
         </div>
     </section>
 
-<!-- About -->
-<section id="about" class="py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2 class="mb-4">About Us</h2>
-                <p>Travel Mobil is your premier destination for car rentals. Whether you're planning a weekend getaway or a cross-country road trip, we've got you covered with our diverse fleet of vehicles. Our mission is to provide you with the best possible experience, offering top-notch customer service and reliable vehicles at competitive prices.</p>
-            </div>
-            <div class="about-image col-md-6">
-                <img src="/assets/images/cover.png" class="img-fluid" alt="About Us">
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-3 mb-4">
-                <div class="about-item text-center">
-                    <img src="/assets/images/service-24-hours.png" class="img-fluid rounded-circle mb-3" alt="24 Hours Service">
-                    <h4 class="mt-3">Pelayanan 24 Jam</h4>
-                    <p>Kami siap melayani dan menjawab pertanyaan Anda 24 jam.</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="about-item text-center">
-                    <img src="/assets/images/professional-driver.png" class="img-fluid rounded-circle mb-3" alt="Professional Driver">
-                    <h4 class="mt-3">Driver Profesional</h4>
-                    <p>Jam terbang dan profesionalitas dari driver kami bisa diandalkan.</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="about-item text-center">
-                    <img src="/assets/images/safe-cars.png" class="img-fluid rounded-circle mb-3" alt="Safe Cars">
-                    <h4 class="mt-3">Mobil Aman</h4>
-                    <p>Kondisi mobil yang ok, kenyamanan dan keamanan selama pandemi.</p>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4">
-                <div class="about-item text-center">
-                    <img src="/assets/images/budget-friendly.png" class="img-fluid rounded-circle mb-3" alt="Budget Friendly">
-                    <h4 class="mt-3">Hemat</h4>
-                    <p>Dapatkan harga paket hemat terbaik dari kami dan tim.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Schedules -->
+    <section id="schedules" class="py-5">
+        <div class="container">
+            <!-- <h2 class="mb-4">Manage Schedules</h2>
+            <p>View and manage schedules for the cars.</p>
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal"
+                data-bs-target="#addSchedulesModal"><i class="bi bi-calendar-plus-fill"></i> Add Schedules
+            </button> -->
 
+            <!-- Search Form -->
+            <form id="searchForm" class="mb-4">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select id="schedulesFromLocation" class="form-select" aria-label="From Location">
+                            <option value="">Select From Location</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="schedulesToLocation" class="form-select" aria-label="To Location">
+                            <option value="">Select To Location</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" id="schedulesDateTrip" class="form-control" aria-label="Date Trip">
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-secondary" id="schedulesSearchBtn">Search</button>
+                    </div>
+                </div>
+            </form>
 
+            <!-- Schedules Table -->
+            <div class="table" style="max-height: 600px; overflow-y: scroll; white-space: nowrap;">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-center">No</th>
+                            <th scope="col" style="width: 150px" class="px-lg-5 text-center">Image</th>
+                            <th scope="col" class="px-lg-0 text-center">Name</th>
+                            <th scope="col" class="px-lg-5 text-center">Specification</th>
+                            <th scope="col" class="text-center">From</th>
+                            <th scope="col" class="text-center">To</th>
+                            <th scope="col" class="text-center">Departure Schedule</th>
+                            <th scope="col" class="text-center">Departure Time</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center">Capacity</th>
+                            <th scope="col" class="text-center">Rental Price</th>
+                            <!-- <th scope="col" class="px-lg-0 text-center">Action</th> -->
+                        </tr>
+                    </thead>
+                    <tbody id="schedulesTableBody">
 
-    <section id="gallery" class="flex-grow-1 bg-white p-4 rounded">
-        <h2 class="text-center mb-4">Our Fleet</h2>
-        <div class="row" id="carGallery">
-            <!-- Tempat untuk menampilkan mobil -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="my-3">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination" id="paginationControlsSchedules"></ul>
+                </nav>
+            </div>
         </div>
     </section>
 
+    <!-- About -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="mb-4">About Us</h2>
+                    <p>Travel Mobil is your premier destination for car rentals. Whether you're planning a
+                        weekend
+                        getaway or a cross-country road trip, we've got you covered with our diverse fleet of
+                        vehicles.
+                        Our mission is to provide you with the best possible experience, offering top-notch
+                        customer
+                        service and reliable vehicles at competitive prices.</p>
+                </div>
+                <div class="about-image col-md-6">
+                    <img src="/assets/images/cover.png" class="img-fluid" alt="About Us">
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-3 mb-4">
+                    <div class="about-item text-center">
+                        <img src="/assets/images/service-24-hours.png" class="img-fluid rounded-circle mb-3"
+                            alt="24 Hours Service">
+                        <h4 class="mt-3 text-white">Pelayanan 24 Jam</h4>
+                        <p>Kami siap melayani dan menjawab pertanyaan Anda 24 jam.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="about-item text-center">
+                        <img src="/assets/images/professional-driver.png" class="img-fluid rounded-circle mb-3"
+                            alt="Professional Driver">
+                        <h4 class="mt-3 text-white">Driver Profesional</h4>
+                        <p>Jam terbang dan profesionalitas dari driver kami bisa diandalkan.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="about-item text-center">
+                        <img src="/assets/images/safe-cars.png" class="img-fluid rounded-circle mb-3" alt="Safe Cars">
+                        <h4 class="mt-3 text-white">Mobil Aman</h4>
+                        <p>Kondisi mobil yang ok, kenyamanan dan keamanan selama pandemi.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="about-item text-center">
+                        <img src="/assets/images/budget-friendly.png" class="img-fluid rounded-circle mb-3"
+                            alt="Budget Friendly">
+                        <h4 class="mt-3 text-white">Hemat</h4>
+                        <p>Dapatkan harga paket hemat terbaik dari kami dan tim.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Our Fleet -->
+    <section id="ourFleet" class="flex-grow-1 bg-white p-4 rounded">
+        <h2 class="text-center mb-4">Our Fleet</h2>
+        <div class="row" id="carOurFleet">
+            <!-- Tempat untuk menampilkan mobil -->
+        </div>
+    </section>
 
     <!-- Map -->
     <section id="map" class="py-5 bg-light">
@@ -147,8 +334,14 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="/js/app.js" type="module"></script>
+    <script src="/js/auth.js"></script>
 </body>
+
 </html>
