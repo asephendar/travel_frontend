@@ -91,10 +91,10 @@ export function displaySchedules(schedules) {
         <td class="text-center">${schedule.car.capacity}</td>
         <td class="text-center">${schedule.rental_price}</td>
         <td class="text-center">
-          <button type="button" class="btn btn-primary btn-sm edit-schedules-btn" data-bs-toggle="modal" data-bs-target="#addOrdersModal" data-schedules-id="${schedule.id_schedule}">
+          <!-- <button type="button" class="btn btn-primary btn-sm edit-schedules-btn" data-bs-toggle="modal" data-bs-target="#addOrdersModal" data-schedules-id="${schedule.id_schedule}">
           <i class="bi bi-cart"></i> Add Order
           </button>
-          <!-- <button type="button" class="btn btn-danger btn-sm delete-schedules-btn" data-schedules-id="${schedule.id_schedule}">
+          <button type="button" class="btn btn-danger btn-sm delete-schedules-btn" data-schedules-id="${schedule.id_schedule}">
             <i class="bi bi-trash-fill"></i> Delete
           </button> -->
         </td>
