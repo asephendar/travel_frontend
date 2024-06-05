@@ -58,26 +58,57 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     });
 
+    // Fungsi untuk menampilkan modal edit mobil
     function displayEditCarModal(data) {
+      // Setel nilai pada input form dari data
       document.getElementById('editCarId').value = data.id_car;
       document.getElementById('editCarName').value = data.name;
       document.getElementById('editCarSpec').value = data.specification;
       document.getElementById('editCarCapacity').value = data.capacity;
 
+      // Setel gambar pratinjau
+      const imagePreview = document.getElementById('editCarImagePreview');
+      if (data.image) {
+        imagePreview.src = data.image;
+      } else {
+        imagePreview.src = ''; // Kosongkan jika tidak ada gambar
+      }
+
+      // Dapatkan elemen modal
       const editCarModalElement = document.getElementById('editCarModal');
       const editCarModal = new bootstrap.Modal(editCarModalElement);
 
-      editCarModalElement.addEventListener('hidden.bs.modal', function () {
-        editCarModal.hide();
-        document.body.classList.remove('modal-open');
-        const backdropElement = document.querySelector('.modal-backdrop');
-        if (backdropElement) {
-          backdropElement.remove();
-        }
-      });
+      // Pastikan event listener hanya ditambahkan sekali
+      if (!editCarModalElement.dataset.listenerAdded) {
+        editCarModalElement.addEventListener('hidden.bs.modal', function () {
+          editCarModal.hide();
+          document.body.classList.remove('modal-open');
+          const backdropElement = document.querySelector('.modal-backdrop');
+          if (backdropElement) {
+            backdropElement.remove();
+          }
+        });
+        editCarModalElement.dataset.listenerAdded = true; // Tandai bahwa event listener telah ditambahkan
+      }
 
+      // Tampilkan modal
       editCarModal.show();
     }
+
+    // Event listener untuk memperbarui pratinjau gambar saat file diubah
+    document.getElementById('editCarImage').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        document.getElementById('editCarImagePreview').src = e.target.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+
 
     const editCarForm = document.getElementById('editCarForm');
     const carsEditErrorAlert = document.getElementById('carsEditErrorAlert');
